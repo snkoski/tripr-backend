@@ -1,8 +1,8 @@
 class Api::V1::UsersController < ApplicationController
 before_action :find_user, only: [:update, :show, :destroy]
   def index
-    @users = Users.all
-    render json: @trips
+    @users = User.all
+    render json: @users
   end
 
   def show
@@ -20,6 +20,7 @@ before_action :find_user, only: [:update, :show, :destroy]
       render json: @user, status: :accepted
     else
       render json: { errors: @user.errors.full_message }, status: :unprocessible_entity
+    end
   end
 
   def destroy

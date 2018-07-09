@@ -1,7 +1,7 @@
 class Api::V1::TripsController < ApplicationController
 before_action :find_trip, only: [:update, :show, :destroy]
   def index
-    @trips = Trips.all
+    @trips = Trip.all
     render json: @trips
   end
 
@@ -20,6 +20,7 @@ before_action :find_trip, only: [:update, :show, :destroy]
       render json: @trip, status: :accepted
     else
       render json: { errors: @trip.errors.full_message }, status: :unprocessible_entity
+    end
   end
 
   def destroy
@@ -38,4 +39,5 @@ before_action :find_trip, only: [:update, :show, :destroy]
   def find_trip
     @trip = Trip.find(params[:id])
   end
+
 end
