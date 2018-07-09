@@ -12,9 +12,10 @@ class Api::V1::ActivitiesController < ApplicationController
 
     private
 
-    def activity_params
-
-    end
+    ### might need later, if we let users create activities
+    # def activity_params
+    #   params.permit(:name, :thumbnail, :description, :destination_id)
+    # end
 
     def find_activity
       @activity = Activity.find(params[:id])
