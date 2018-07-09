@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :trips
       resources :destinations, only: [:index, :show]
       resources :activities, only: [:index, :show]
+
+      get '/destinations/:id/activities', to: 'destinations#activities'
     end
   end
 end
