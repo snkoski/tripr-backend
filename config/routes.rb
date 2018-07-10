@@ -9,7 +9,8 @@ Rails.application.routes.draw do
 
       get '/destinations/:id/activities', to: 'destinations#activities'
 
-      get '/destinations/:id/activities/:id', to: 'activities#destination_activity'
+      post '/login', to: 'auth#create'
+      get '/reauth', to: 'auth#show'
     end
   end
 end
