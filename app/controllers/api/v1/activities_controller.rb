@@ -1,5 +1,5 @@
 class Api::V1::ActivitiesController < ApplicationController
-  before_action :find_activity, only: [:show]
+  before_action :find_activity, only: [:show, :destination_activity]
     def index
       @activities = Activity.all
       render json: @activities
@@ -8,6 +8,17 @@ class Api::V1::ActivitiesController < ApplicationController
     def show
       @activity
       render json: @activity
+    end
+
+    def destination_activity
+      @activity
+      @destination = Destination.find(params[:id])
+      byebug
+      if @destination.activities.include? @activity
+        render json: @activity
+      else
+        render json: @destination
+      end
     end
 
     private

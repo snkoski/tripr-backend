@@ -33,6 +33,7 @@ before_action :find_user, only: [:update, :show, :destroy]
   def user_trips
     @user = User.find(params[:id])
     render json: @user.trips
+  end
 
   private
 

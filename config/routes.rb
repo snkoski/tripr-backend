@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :activities, only: [:index, :show]
 
       get '/destinations/:id/activities', to: 'destinations#activities'
+
+      get '/destinations/:id/activities/:id', to: 'activities#destination_activity'
     end
   end
 end
