@@ -19,10 +19,21 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
 
   def update
     @trip.update(trip_params)
+    if params[:activity_id].present?
+      @trip.activities += Activity.where(id: params[:activity_id])
+    end
     if @trip.save
       render json: @trip, status: :accepted
     else
       render json: { errors: @trip.errors.full_message }, status: :unprocessible_entity
+    end
+
+
+
+    @venue.update_attributes(params[:venue_params])
+    if params[:interest_ids].present?
+       @venue.interests = Interest.where(id: params[:interest_ids])
+       @venue.save
     end
   end
 
