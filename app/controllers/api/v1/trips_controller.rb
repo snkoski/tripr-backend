@@ -12,6 +12,8 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
 
   def create
     @trip = Trip.create(trip_params)
+
+    UserTrip.create(user_id: trip_params[:user_id], trip_id: @trip.id)
   end
 
   def update
@@ -39,7 +41,7 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
   private
 
   def trip_params
-    params.permit(:name, :start_date, :end_date, :destination_id)
+    params.permit(:name, :start_date, :end_date, :destination_id, :user_id)
   end
 
   def find_trip
