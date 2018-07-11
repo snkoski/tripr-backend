@@ -11,9 +11,10 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
   end
 
   def create
-    @trip = Trip.create(trip_params)
 
-    UserTrip.create(user_id: trip_params[:user_id], trip_id: @trip.id)
+    @trip = Trip.create(trip_params)
+    UserTrip.create(user_id: params[:user_id], trip_id: @trip.id)
+    render json: @trip
   end
 
   def update
@@ -41,7 +42,7 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
   private
 
   def trip_params
-    params.permit(:name, :start_date, :end_date, :destination_id, :user_id)
+    params.permit(:name, :start_date, :end_date, :destination_id)
   end
 
   def find_trip
