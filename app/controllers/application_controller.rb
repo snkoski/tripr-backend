@@ -1,38 +1,23 @@
 class ApplicationController < ActionController::API
-
   def user_id
-    request.headers['Authorization']
+
+    decoded_token[0]['user_id']
   end
 
-  def current_user
+  def decoded_token
+
+    JWT.decode(request.headers['Authorization'], 'learnlovecode', true, {algorithm: 'HS256'})
+  end
+
+  def encoded_token(user)
+    JWT.encode({user_id: user.id}, 'learnlovecode' , 'HS256')
+  end
+
+  def current_user_not_serializer
     @user ||= User.find_by(id: user_id)
   end
 
   def logged_in
-    !!current_user
+    !!current_user_not_serializer
   end
 end
-
-
-# def user_id
-#     byebug
-#   decoded_token[0]['user_id']
-# end
-#
-# def decoded_token
-#
-#   JWT.decode(request.headers['Authorization'], 'secret', true, {algorithm: 'HS256'})
-# end
-#
-# def encoded_token(user)
-#   JWT.encode({user_id: user.id}, 'secret' , 'HS256')
-# end
-#
-# def current_user
-#   @user ||= User.find_by(id: user_id)
-# end
-#
-# def logged_in
-#   !!current_user
-# end
-# end
