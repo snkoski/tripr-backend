@@ -10,17 +10,7 @@ class Api::V1::ActivitiesController < ApplicationController
       render json: @activity
     end
 
-    def destination_activity
-      @activity
-      @destination = Destination.find(params[:id])
-      byebug
-      if @destination.activities.include? @activity
-        render json: @activity
-      else
-        render json: @destination
-      end
-    end
-
+    
     private
 
     ### might need later, if we let users create activities

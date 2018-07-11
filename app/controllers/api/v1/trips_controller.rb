@@ -1,5 +1,5 @@
 class Api::V1::TripsController < ApplicationController
-before_action :find_trip, only: [:update, :show, :destroy]
+before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
   def index
     @trips = Trip.all
     render json: @trips
@@ -29,6 +29,12 @@ before_action :find_trip, only: [:update, :show, :destroy]
     # flash[:success] = "Trip deleted"
     render json: @trips
   end
+
+  def trip_activities
+    @trip
+    render json: @trip.activities
+  end
+
 
   private
 
