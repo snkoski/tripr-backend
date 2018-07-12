@@ -13,7 +13,7 @@ class Api::V1::AuthController < ApplicationController
   def show
     if logged_in
 
-      render json: {username: current_user.username, id: current_user.id}, status: 200
+      render json: {username: current_user_not_serializer.username, id: current_user_not_serializer.id}, status: 200
     else
       render json: {error: 'Token Invalid'}, status: 401
     end
