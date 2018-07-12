@@ -40,7 +40,7 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
   def destroy
     @trips = Trips.all
     @trip.destroy
-    flash[:success] = "Trip deleted"
+    # flash[:success] = "Trip deleted"
     # render json: @trips
 
   end
