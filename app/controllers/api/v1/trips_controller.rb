@@ -42,7 +42,7 @@ before_action :find_trip, only: [:update, :show, :destroy, :trip_activities]
     @trip.destroy
     # flash[:success] = "Trip deleted"
     # render json: @trips
-
+    render json: { status: 'Deleted' }
   end
 
   def trip_activities
